@@ -1,0 +1,33 @@
+{
+  "scriptFile": "__init__.py",
+  "bindings": [
+    {
+      "name": "encryptedblob",
+      "type": "blobTrigger",
+      "direction": "in",
+      "path": "pgpencrypted/{name}",
+      "connection": "PGPStorageAcct"
+    },
+    {
+      "name": "privatekeyblob",
+      "type": "blob",
+      "direction": "in",
+      "path": "pgpsrc/private.key",
+      "connection": "PGPStorageAcct"
+    },
+    {
+      "name": "publickeyblob",
+      "type": "blob",
+      "direction": "in",
+      "path": "pgpsrc/public.key",
+      "connection": "PGPStorageAcct"
+    },
+    {
+      "name": "decryptedblob",
+      "type": "blob",
+      "path": "pgpdecrypted/{name}",
+      "connection": "PGPStorageAcct",
+      "direction": "out"
+    }
+  ]
+}
