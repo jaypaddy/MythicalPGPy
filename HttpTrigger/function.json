@@ -2,32 +2,33 @@
   "scriptFile": "__init__.py",
   "bindings": [
     {
-      "name": "encryptedblob",
-      "type": "blobTrigger",
+      "authLevel": "function",
+      "type": "httpTrigger",
       "direction": "in",
-      "path": "pgpencrypted/{name}",
-      "connection": "PGPStorageAcct"
+      "name": "req",
+      "methods": [
+        "get",
+        "post"
+      ]
     },
     {
       "name": "privatekeyblob",
       "type": "blob",
       "direction": "in",
-      "path": "pgpy/private.key",
+      "path": "pgpsrc/{privatekeyfilename}",
       "connection": "PGPStorageAcct"
     },
     {
       "name": "publickeyblob",
       "type": "blob",
       "direction": "in",
-      "path": "pgpy/public.key",
+      "path": "pgpsrc/{pubkeyfilename}",
       "connection": "PGPStorageAcct"
     },
     {
-      "name": "decryptedblob",
-      "type": "blob",
-      "path": "pgpy/{name}",
-      "connection": "PGPStorageAcct",
-      "direction": "out"
+      "type": "http",
+      "direction": "out",
+      "name": "$return"
     }
   ]
 }
