@@ -69,20 +69,15 @@ def main(encryptedblob: func.InputStream,
                  f"Name: {encryptedblob.name}\n"
                  f"Blob Size: {encryptedblob.length} bytes")
 
-    ConnStr = "DefaultEndpointsProtocol=https;AccountName=mythicalspa;AccountKey=NGlfooNqhxr6SOl3Xnh8MR8DKpv3OkM4VP9K3TbsOpwPBYHcLjrJafetnwEf4Y+10WK/4yv/MWnxxMyG1udkhg==;EndpointSuffix=core.windows.net"
-    srcContainer = "pgpy"
-
-    blobObj = BlobClass(ConnStr, srcContainer)
 
     #Get the Source Content
-    srcFile = 'ec_hremp_cntrycd_dly.dat'
-    srcContent = blobObj.download_blob_as_string(srcFile)
+    srcContent = encryptedblob.read().decode("utf-8")
     print('Source Length', len(srcContent))
     #Get the PGPObject
     pgpyObj = PGPy("hrecs@123")
 
     #Get the Private Key
-    keyContent = blobObj.download_blob_as_string('private.key')
+    keyContent = privatekeyblob.read().decode("utf-8")
 
     #Import Private Key
     key = pgpyObj.import_keys(keyContent)

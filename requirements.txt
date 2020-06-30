@@ -1,7 +1,5 @@
 azure-functions
 pgpy
 azure-storage-blob
-requests
-pyOpenSSL
-ndg-httpsclient
+
  
